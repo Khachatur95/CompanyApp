@@ -76,8 +76,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.listBoxMR_Info = new System.Windows.Forms.ListBox();
             this.MR_info = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -99,6 +97,7 @@
             this.MR_Age = new System.Windows.Forms.TextBox();
             this.MR_Staff = new System.Windows.Forms.Button();
             this.listBox_MR = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.listBox_TS_Info = new System.Windows.Forms.ListBox();
             this.TS_Info = new System.Windows.Forms.Button();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
@@ -120,6 +119,8 @@
             this.TS_Age = new System.Windows.Forms.TextBox();
             this.TS_Staff = new System.Windows.Forms.Button();
             this.listBox_TS_Staff = new System.Windows.Forms.ListBox();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.Real_Salary = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -143,6 +144,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Real_Salary);
             this.tabPage1.Controls.Add(this.listBox_info);
             this.tabPage1.Controls.Add(this.Info_Button);
             this.tabPage1.Controls.Add(this.comboBox1);
@@ -609,41 +611,6 @@
             this.tabPage3.Text = "Marketig";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.listBox_TS_Info);
-            this.tabPage4.Controls.Add(this.TS_Info);
-            this.tabPage4.Controls.Add(this.comboBox4);
-            this.tabPage4.Controls.Add(this.Add_comb_TS);
-            this.tabPage4.Controls.Add(this.Delete_TS);
-            this.tabPage4.Controls.Add(this.Update_TS);
-            this.tabPage4.Controls.Add(this.Add_TS);
-            this.tabPage4.Controls.Add(this.label19);
-            this.tabPage4.Controls.Add(this.label20);
-            this.tabPage4.Controls.Add(this.label21);
-            this.tabPage4.Controls.Add(this.label22);
-            this.tabPage4.Controls.Add(this.label23);
-            this.tabPage4.Controls.Add(this.label24);
-            this.tabPage4.Controls.Add(this.TS_Salary);
-            this.tabPage4.Controls.Add(this.TS_Position);
-            this.tabPage4.Controls.Add(this.TS_Id);
-            this.tabPage4.Controls.Add(this.TS_Name);
-            this.tabPage4.Controls.Add(this.TS_Surname);
-            this.tabPage4.Controls.Add(this.TS_Age);
-            this.tabPage4.Controls.Add(this.TS_Staff);
-            this.tabPage4.Controls.Add(this.listBox_TS_Staff);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(792, 424);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "TechnicalSupport";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // fileSystemWatcher1
-            // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
-            // 
             // listBoxMR_Info
             // 
             this.listBoxMR_Info.FormattingEnabled = true;
@@ -822,6 +789,36 @@
             this.listBox_MR.Name = "listBox_MR";
             this.listBox_MR.Size = new System.Drawing.Size(523, 160);
             this.listBox_MR.TabIndex = 21;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.listBox_TS_Info);
+            this.tabPage4.Controls.Add(this.TS_Info);
+            this.tabPage4.Controls.Add(this.comboBox4);
+            this.tabPage4.Controls.Add(this.Add_comb_TS);
+            this.tabPage4.Controls.Add(this.Delete_TS);
+            this.tabPage4.Controls.Add(this.Update_TS);
+            this.tabPage4.Controls.Add(this.Add_TS);
+            this.tabPage4.Controls.Add(this.label19);
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.label23);
+            this.tabPage4.Controls.Add(this.label24);
+            this.tabPage4.Controls.Add(this.TS_Salary);
+            this.tabPage4.Controls.Add(this.TS_Position);
+            this.tabPage4.Controls.Add(this.TS_Id);
+            this.tabPage4.Controls.Add(this.TS_Name);
+            this.tabPage4.Controls.Add(this.TS_Surname);
+            this.tabPage4.Controls.Add(this.TS_Age);
+            this.tabPage4.Controls.Add(this.TS_Staff);
+            this.tabPage4.Controls.Add(this.listBox_TS_Staff);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(792, 424);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "TechnicalSupport";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // listBox_TS_Info
             // 
@@ -1002,6 +999,21 @@
             this.listBox_TS_Staff.Size = new System.Drawing.Size(523, 160);
             this.listBox_TS_Staff.TabIndex = 21;
             // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // Real_Salary
+            // 
+            this.Real_Salary.Location = new System.Drawing.Point(31, 283);
+            this.Real_Salary.Name = "Real_Salary";
+            this.Real_Salary.Size = new System.Drawing.Size(75, 23);
+            this.Real_Salary.TabIndex = 1;
+            this.Real_Salary.Text = "Real Salary";
+            this.Real_Salary.UseVisualStyleBackColor = true;
+            this.Real_Salary.Click += new System.EventHandler(this.Real_Salary_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1119,6 +1131,7 @@
         private System.Windows.Forms.TextBox TS_Age;
         private System.Windows.Forms.Button TS_Staff;
         private System.Windows.Forms.ListBox listBox_TS_Staff;
+        private System.Windows.Forms.Button Real_Salary;
     }
 }
 

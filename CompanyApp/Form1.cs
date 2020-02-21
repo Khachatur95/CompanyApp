@@ -497,5 +497,23 @@ namespace CompanyApp
                 }
             }
         }
+
+        private void Real_Salary_Click(object sender, EventArgs e)
+        {
+            Real_Salary1(connectionString, "HumanResources");
+        }
+        private void Real_Salary1(string connectionString, string tablename)
+        {
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+                var command = new SqlCommand($"Select SUM(Salary-(Salary/100)*25) From {tablename} ", connection);
+                var sum = command.ExecuteScalar();
+                MessageBox.Show(Convert.ToString("RealSalary="+sum));
+            }
+        }
+
     }
 }
