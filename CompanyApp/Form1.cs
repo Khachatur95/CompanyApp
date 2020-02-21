@@ -20,6 +20,7 @@ namespace CompanyApp
             InitializeComponent();
         }
 
+        //Human Resources
         private void Button1_Click(object sender, EventArgs e)
         {
 
@@ -40,37 +41,12 @@ namespace CompanyApp
                     while (reader.Read())
                     {
                         listBox1.Items.Add($"{reader["Id_HumanResources"]}.{reader["EmployeeName"]}" +
-                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}    {reader["Salary"]}");
+                             $"   {reader["EmployeeSurname"]} ");
                     }
                 }
             }
 
 
-        }
-        private void Button10_Click(object sender, EventArgs e)
-        {
-
-            var connection = new SqlConnection(connectionString);
-
-
-            using (connection = new SqlConnection(connectionString))
-            {
-                if (connection.State != System.Data.ConnectionState.Open)
-                    connection.Open();
-
-                using (SqlCommand cmd = connection.CreateCommand())
-                {
-                    cmd.CommandText = "Select * From It";
-
-                    var reader = cmd.ExecuteReader();
-                    listBox2.Items.Clear();
-                    while (reader.Read())
-                    {
-                        listBox2.Items.Add($"{reader["Id_It"]}.{reader["EmployeeName"]}" +
-                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}     {reader["Classification"]}    {reader["Salary"]}");
-                    }
-                }
-            }
         }
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -84,7 +60,10 @@ namespace CompanyApp
         {
             DeleteEmployee(connectionString, "HumanResources");
         }
-
+        private void Info_Button_Click(object sender, EventArgs e)
+        {
+            More_Info_Employee(connectionString, "HumanResources");
+        }
         private void InsertDbElements(string connectionString, string tablename)
         {
 
@@ -137,22 +116,73 @@ namespace CompanyApp
                 MessageBox.Show($"Delete Eployes ");
             }
         }
+        private void More_Info_Employee(string connectionString, string tablename)
+        {
+            var connection = new SqlConnection(connectionString);
 
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    var comand = new SqlCommand($"Select * From {tablename} WHERE [Id_HumanResources]=@Id_HumanResources", connection);
+                    comand.Parameters.AddWithValue("Id_HumanResources", textBox1.Text);
+
+                    var reader = comand.ExecuteReader();
+                    listBox1.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBox_info.Items.Add($"{reader["Id_HumanResources"]}.{reader["EmployeeName"]}" +
+                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}    {reader["Salary"]}");
+                    }
+                }
+            }
+        }
+        //It
+        private void Button10_Click(object sender, EventArgs e)
+        {
+
+            var connection = new SqlConnection(connectionString);
+
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "Select * From It";
+
+                    var reader = cmd.ExecuteReader();
+                    listBox2.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBox2.Items.Add($"{reader["Id_It"]}.{reader["EmployeeName"]}" +
+                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}     {reader["Classification"]}    {reader["Salary"]}");
+                    }
+                }
+            }
+        }
         private void Button9_Click(object sender, EventArgs e)
         {
             InsertDbElements_It(connectionString, "It");
         }
-
         private void Button8_Click(object sender, EventArgs e)
         {
             UpdateDbElements_It(connectionString, "It");
         }
-
         private void Button7_Click(object sender, EventArgs e)
         {
             DeleteEmployee_It(connectionString, "It");
         }
-
+        private void More_Info_It_Click(object sender, EventArgs e)
+        {
+            More_Info_Employee_It(connectionString, "It");
+        }
         private void InsertDbElements_It(string connectionString, string tablename)
         {
 
@@ -174,7 +204,6 @@ namespace CompanyApp
                 MessageBox.Show($"Added objects");
             }
         }
-
         private void DeleteEmployee_It(string connectionString, string tablename)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -208,6 +237,265 @@ namespace CompanyApp
                 MessageBox.Show("Updated objects");
             }
         }
+        private void More_Info_Employee_It(string connectionString, string tablename)
+        {
+            var connection = new SqlConnection(connectionString);
 
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    var comand = new SqlCommand($"Select * From {tablename} WHERE [Id_It]=@Id_It", connection);
+                    comand.Parameters.AddWithValue("Id_It", textBox9.Text);
+
+                    var reader = comand.ExecuteReader();
+                    listBox1.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBox_It_info.Items.Add($"{reader["Id_It"]}.{reader["EmployeeName"]}" +
+                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}    {reader["Salary"]}    {reader["Classification"]}");
+                    }
+                }
+            }
+        }
+        //Marketing
+        private void Add_MR_Click(object sender, EventArgs e)
+        {
+            InsertDbElements_MR(connectionString, "Marketing");
+        }
+        private void Update_MR_Click(object sender, EventArgs e)
+        {
+            UpdateDbElements_MR(connectionString, "Marketing");
+        }
+        private void Dlelete_MR_Click(object sender, EventArgs e)
+        {
+            DeleteEmployee_MR(connectionString, "Marketing");
+        }
+        private void MR_Staff_Click(object sender, EventArgs e)
+        {
+            var connection = new SqlConnection(connectionString);
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "Select * From Marketing";
+
+                    var reader = cmd.ExecuteReader();
+                    listBox_MR.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBox_MR.Items.Add($"{reader["Id_Marketing"]}.{reader["EmployeeName"]}" +
+                              $"   {reader["EmployeeSurname"]} ");
+                    }
+                }
+            }
+
+        }
+        private void MR_info_Click(object sender, EventArgs e)
+        {
+            More_Info_Employee_MR(connectionString, "Marketing");
+        }
+        private void InsertDbElements_MR(string connectionString, string tablename)
+        {
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
+                var command = new SqlCommand($"INSERT INTO {tablename} (EmployeeName,EmployeeSurname, Age,Position,Salary) " +
+                  $"VALUES (@EmployeeName,@EmployeeSurname,@Age,@Position,@Salary)", connection);
+                command.Parameters.AddWithValue("EmployeeName", MR_Name.Text);
+                command.Parameters.AddWithValue("EmployeeSurname", MR_Surname.Text);
+                command.Parameters.AddWithValue("Age", MR_Age.Text);
+                command.Parameters.AddWithValue("Position", MR_Position.Text);
+                command.Parameters.AddWithValue("Salary", MR_Salary.Text);
+
+                command.ExecuteNonQuery();
+                MessageBox.Show($"Added objects");
+            }
+        }
+        private void UpdateDbElements_MR(string connectionString, string tablename)
+        {
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
+                var command = new SqlCommand($"Update {tablename} Set [EmployeeName] =@EmployeeName ,[EmployeeSurname] = @EmployeeSurname, [Age]=@Age,[Position]=@Position," +
+                                             $"[Salary]=@Salary Where [Id_Marketing]=@Id_Marketing ", connection);
+                command.Parameters.AddWithValue("Id_Marketing", MR_Id.Text);
+                command.Parameters.AddWithValue("EmployeeName", MR_Name.Text);
+                command.Parameters.AddWithValue("EmployeeSurname", MR_Surname.Text);
+                command.Parameters.AddWithValue("Age", MR_Age.Text);
+                command.Parameters.AddWithValue("Position", MR_Position.Text);
+                command.Parameters.AddWithValue("Salary", MR_Salary.Text);
+
+                int number = command.ExecuteNonQuery();
+                MessageBox.Show("Updated objects");
+            }
+        }
+        private void DeleteEmployee_MR(string connectionString, string tablename)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var comand = new SqlCommand($"DELETE  {tablename} WHERE [Id_Marketing]=@Id_Marketing", connection);
+                comand.Parameters.AddWithValue("Id_Marketing", MR_Id.Text);
+                comand.ExecuteNonQuery();
+                MessageBox.Show($"Delete Eployes ");
+            }
+        }
+        private void More_Info_Employee_MR(string connectionString, string tablename)
+        {
+            var connection = new SqlConnection(connectionString);
+
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    var comand = new SqlCommand($"Select * From {tablename} WHERE [Id_Marketing]=@Id_Marketing", connection);
+                    comand.Parameters.AddWithValue("Id_Marketing", MR_Id.Text);
+
+                    var reader = comand.ExecuteReader();
+                    listBoxMR_Info.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBoxMR_Info.Items.Add($"{reader["Id_Marketing"]}.{reader["EmployeeName"]}" +
+                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}    {reader["Salary"]}");
+                    }
+                }
+            }
+        }
+        //Technical Support
+        private void Add_TS_Click(object sender, EventArgs e)
+        {
+            InsertDbElements_TS(connectionString, "TechnicalSupport");
+        }
+        private void Update_TS_Click(object sender, EventArgs e)
+        {
+            UpdateDbElements_TS(connectionString, "TechnicalSupport");
+        }
+        private void Delete_TS_Click(object sender, EventArgs e)
+        {
+            DeleteEmployee_TS(connectionString, " TechnicalSupport");
+        }
+        private void TS_Staff_Click(object sender, EventArgs e)
+        {
+            var connection = new SqlConnection(connectionString);
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "Select * From TechnicalSupport";
+
+                    var reader = cmd.ExecuteReader();
+                    listBox_TS_Staff.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBox_TS_Staff.Items.Add($"{reader["Id_TechnicalSupport"]}.{reader["EmployeeName"]}" +
+                              $"   {reader["EmployeeSurname"]} ");
+                    }
+                }
+            }
+        }
+        private void TS_Info_Click(object sender, EventArgs e)
+        {
+            More_Info_Employee_TS(connectionString, "TechnicalSupport");
+        }
+        private void InsertDbElements_TS(string connectionString, string tablename)
+        {
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
+                var command = new SqlCommand($"INSERT INTO {tablename} (EmployeeName,EmployeeSurname, Age,Position,Salary) " +
+                  $"VALUES (@EmployeeName,@EmployeeSurname,@Age,@Position,@Salary)", connection);
+                command.Parameters.AddWithValue("EmployeeName", TS_Name.Text);
+                command.Parameters.AddWithValue("EmployeeSurname", TS_Surname.Text);
+                command.Parameters.AddWithValue("Age", TS_Age.Text);
+                command.Parameters.AddWithValue("Position", TS_Position.Text);
+                command.Parameters.AddWithValue("Salary", TS_Salary.Text);
+
+                command.ExecuteNonQuery();
+                MessageBox.Show($"Added objects");
+            }
+        }
+        private void UpdateDbElements_TS(string connectionString, string tablename)
+        {
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != ConnectionState.Open)
+                    connection.Open();
+                var command = new SqlCommand($"Update {tablename} Set [EmployeeName] =@EmployeeName ,[EmployeeSurname] = @EmployeeSurname, [Age]=@Age,[Position]=@Position," +
+                                             $"[Salary]=@Salary Where [Id_TechnicalSupport]=@Id_TechnicalSupport ", connection);
+                command.Parameters.AddWithValue("Id_TechnicalSupport", TS_Id.Text);
+                command.Parameters.AddWithValue("EmployeeName", TS_Name.Text);
+                command.Parameters.AddWithValue("EmployeeSurname", TS_Surname.Text);
+                command.Parameters.AddWithValue("Age", TS_Age.Text);
+                command.Parameters.AddWithValue("Position", TS_Position.Text);
+                command.Parameters.AddWithValue("Salary", TS_Salary.Text);
+
+                int number = command.ExecuteNonQuery();
+                MessageBox.Show("Updated objects");
+            }
+        }
+        private void DeleteEmployee_TS(string connectionString, string tablename)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var comand = new SqlCommand($"DELETE  {tablename} WHERE [Id_TechnicalSupport]=@Id_TechnicalSupport", connection);
+                comand.Parameters.AddWithValue("Id_TechnicalSupport", TS_Id.Text);
+                comand.ExecuteNonQuery();
+                MessageBox.Show($"Delete Eployes ");
+            }
+        }
+        private void More_Info_Employee_TS(string connectionString, string tablename)
+        {
+            var connection = new SqlConnection(connectionString);
+
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                if (connection.State != System.Data.ConnectionState.Open)
+                    connection.Open();
+
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    var comand = new SqlCommand($"Select * From {tablename} WHERE [Id_TechnicalSupport]=@Id_TechnicalSupport", connection);
+                    comand.Parameters.AddWithValue("Id_TechnicalSupport", TS_Id.Text);
+
+                    var reader = comand.ExecuteReader();
+                    listBox_TS_Info.Items.Clear();
+                    while (reader.Read())
+                    {
+                        listBox_TS_Info.Items.Add($"{reader["Id_TechnicalSupport"]}.{reader["EmployeeName"]}" +
+                             $"   {reader["EmployeeSurname"]}    {reader["Age"]}    {reader["Position"]}    {reader["Salary"]}");
+                    }
+                }
+            }
+        }
     }
 }
